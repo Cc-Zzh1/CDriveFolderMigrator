@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <style>
+      .bg { fill: #f7f9fc; }
+      .card { fill: #ffffff; stroke: #cfd8e3; stroke-width: 2; rx: 12; }
+      .title { font: 700 21px "Microsoft YaHei UI", "Segoe UI", sans-serif; fill: #1f2937; }
+      .text { font: 15px "Microsoft YaHei UI", "Segoe UI", sans-serif; fill: #374151; }
+      .small { font: 13px "Microsoft YaHei UI", "Segoe UI", sans-serif; fill: #6b7280; }
+      .arrow { stroke: #2563eb; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .good { fill: #ecfdf5; stroke: #34d399; }
+      .warn { fill: #fff7ed; stroke: #fb923c; }
+      .blue { fill: #eff6ff; stroke: #60a5fa; }
+      .purple { fill: #f5f3ff; stroke: #a78bfa; }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#2563eb"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="980" height="430"/>
+  <text class="title" x="32" y="42">迁移与还原流程</text>
+  <text class="small" x="32" y="66">迁移成功后，C 盘原路径变成目录联接；还原时从目标根目录读取记录清单。</text>
+
+  <rect class="card blue" x="35" y="105" width="165" height="105"/>
+  <text class="title" x="62" y="142">1. 选择目录</text>
+  <text class="text" x="58" y="172">源目录在 C 盘</text>
+  <text class="text" x="58" y="194">目标根目录在 E 盘</text>
+  <path class="arrow" d="M210 158 H270"/>
+
+  <rect class="card blue" x="285" y="105" width="165" height="105"/>
+  <text class="title" x="314" y="142">2. 复制校验</text>
+  <text class="text" x="310" y="172">robocopy 复制</text>
+  <text class="text" x="310" y="194">大小接近才继续</text>
+  <path class="arrow" d="M460 158 H520"/>
+
+  <rect class="card good" x="535" y="105" width="165" height="105"/>
+  <text class="title" x="564" y="142">3. 建立联接</text>
+  <text class="text" x="558" y="172">C 盘原路径</text>
+  <text class="text" x="558" y="194">指向目标盘</text>
+  <path class="arrow" d="M710 158 H770"/>
+
+  <rect class="card purple" x="785" y="105" width="160" height="105"/>
+  <text class="title" x="808" y="142">4. 写入记录</text>
+  <text class="text" x="805" y="172">目标根目录生成</text>
+  <text class="text" x="805" y="194">CSV 和说明文件</text>
+
+  <rect class="card warn" x="35" y="260" width="300" height="92"/>
+  <text class="title" x="58" y="296">失败时</text>
+  <text class="text" x="58" y="324">停止迁移，保留原目录，不替换 C 盘路径。</text>
+  <path class="arrow" d="M370 212 C330 250 300 270 335 285"/>
+
+  <rect class="card good" x="380" y="260" width="565" height="92"/>
+  <text class="title" x="405" y="296">还原时</text>
+  <text class="text" x="405" y="324">“还原迁移”读取当前目标根目录下的 迁移来源清单.csv 或 migration-sources.csv。</text>
+  <text class="small" x="405" y="346">目标根目录要填迁移时使用的根目录，例如 E:\AppDataMigrated。</text>
+  <path class="arrow" d="M865 215 C865 245 830 260 785 272"/>
+</svg>

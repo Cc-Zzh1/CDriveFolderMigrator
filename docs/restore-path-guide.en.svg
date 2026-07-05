@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <style>
+      .bg { fill: #f7f9fc; }
+      .card { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; rx: 10; }
+      .good { fill: #ecfdf5; stroke: #34d399; stroke-width: 2; rx: 10; }
+      .bad { fill: #fff7ed; stroke: #fb923c; stroke-width: 2; rx: 10; }
+      .title { font: 700 22px "Segoe UI", "Microsoft YaHei UI", sans-serif; fill: #111827; }
+      .head { font: 700 17px "Segoe UI", "Microsoft YaHei UI", sans-serif; fill: #1f2937; }
+      .text { font: 15px "Segoe UI", "Microsoft YaHei UI", sans-serif; fill: #374151; }
+      .small { font: 13px "Segoe UI", "Microsoft YaHei UI", sans-serif; fill: #6b7280; }
+      .code { font: 14px Consolas, "Segoe UI", monospace; fill: #111827; }
+      .arrow { stroke: #2563eb; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .warnline { stroke: #fb923c; stroke-width: 3; fill: none; marker-end: url(#warnarrow); }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#2563eb"/>
+    </marker>
+    <marker id="warnarrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#fb923c"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="980" height="430"/>
+  <text class="title" x="32" y="44">What To Enter As Target Root During Restore</text>
+  <text class="small" x="32" y="70">The Restore button reads the record CSV under the target root. It does not scan the whole E drive.</text>
+
+  <rect class="card" x="35" y="105" width="280" height="110"/>
+  <text class="head" x="58" y="138">Enter this in the tool</text>
+  <text class="text" x="58" y="168">Target root:</text>
+  <rect x="150" y="147" width="135" height="30" fill="#f8fafc" stroke="#94a3b8" rx="5"/>
+  <text class="code" x="160" y="167">E:\AppDataMigrated</text>
+  <text class="small" x="58" y="196">Use the migration root, not a game folder.</text>
+
+  <path class="arrow" d="M325 160 H395"/>
+
+  <rect class="good" x="405" y="95" width="520" height="150"/>
+  <text class="head" x="430" y="128">Correct: CSV is directly under the target root</text>
+  <text class="code" x="430" y="158">E:\AppDataMigrated\migration-sources.csv</text>
+  <text class="code" x="430" y="184">E:\AppDataMigrated\迁移来源清单.csv</text>
+  <text class="code" x="430" y="214">E:\AppDataMigrated\ExampleGame\...</text>
+  <text class="small" x="700" y="214">real migrated folders can be below it</text>
+
+  <rect class="bad" x="405" y="275" width="520" height="92"/>
+  <text class="head" x="430" y="308">Common mistake: using a game subfolder</text>
+  <text class="code" x="430" y="338">E:\AppDataMigrated\ExampleGame</text>
+  <text class="small" x="430" y="358">The tool will look for the CSV inside this folder and usually report no source list found.</text>
+  <path class="warnline" d="M180 215 C230 315 305 330 395 325"/>
+</svg>

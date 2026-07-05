@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <style>
+      .bg { fill: #f7f9fc; }
+      .card { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; rx: 10; }
+      .good { fill: #ecfdf5; stroke: #34d399; stroke-width: 2; rx: 10; }
+      .bad { fill: #fff7ed; stroke: #fb923c; stroke-width: 2; rx: 10; }
+      .title { font: 700 22px "Microsoft YaHei UI", "Segoe UI", sans-serif; fill: #111827; }
+      .head { font: 700 17px "Microsoft YaHei UI", "Segoe UI", sans-serif; fill: #1f2937; }
+      .text { font: 15px "Microsoft YaHei UI", "Segoe UI", sans-serif; fill: #374151; }
+      .small { font: 13px "Microsoft YaHei UI", "Segoe UI", sans-serif; fill: #6b7280; }
+      .code { font: 14px Consolas, "Microsoft YaHei UI", monospace; fill: #111827; }
+      .arrow { stroke: #2563eb; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .warnline { stroke: #fb923c; stroke-width: 3; fill: none; marker-end: url(#warnarrow); }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#2563eb"/>
+    </marker>
+    <marker id="warnarrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#fb923c"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="980" height="430"/>
+  <text class="title" x="32" y="44">还原时“目标根目录”应该怎么填</text>
+  <text class="small" x="32" y="70">还原按钮只读取目标根目录下的记录 CSV，不会扫描整个 E 盘。</text>
+
+  <rect class="card" x="35" y="105" width="280" height="110"/>
+  <text class="head" x="58" y="138">工具窗口里填写</text>
+  <text class="text" x="58" y="168">目标根目录：</text>
+  <rect x="150" y="147" width="135" height="30" fill="#f8fafc" stroke="#94a3b8" rx="5"/>
+  <text class="code" x="160" y="167">E:\AppDataMigrated</text>
+  <text class="small" x="58" y="196">填迁移根目录，不填具体游戏目录。</text>
+
+  <path class="arrow" d="M325 160 H395"/>
+
+  <rect class="good" x="405" y="95" width="520" height="150"/>
+  <text class="head" x="430" y="128">正确：记录 CSV 直接在目标根目录下</text>
+  <text class="code" x="430" y="158">E:\AppDataMigrated\迁移来源清单.csv</text>
+  <text class="code" x="430" y="184">E:\AppDataMigrated\migration-sources.csv</text>
+  <text class="code" x="430" y="214">E:\AppDataMigrated\ExampleGame\...</text>
+  <text class="small" x="700" y="214">迁移后的真实目录可以在子目录里</text>
+
+  <rect class="bad" x="405" y="275" width="520" height="92"/>
+  <text class="head" x="430" y="308">容易出错：目标根目录填成某个游戏子目录</text>
+  <text class="code" x="430" y="338">E:\AppDataMigrated\ExampleGame</text>
+  <text class="small" x="430" y="358">这样工具会去这个子目录里找 CSV，通常会提示找不到迁移来源清单。</text>
+  <path class="warnline" d="M180 215 C230 315 305 330 395 325"/>
+</svg>

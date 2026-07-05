@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="600" viewBox="0 0 980 600">
+  <defs>
+    <style>
+      .window { fill: #ffffff; stroke: #9ca3af; stroke-width: 2; rx: 10; }
+      .bar { fill: #e5edf7; }
+      .label { font: 15px "Segoe UI", "Microsoft YaHei UI", sans-serif; fill: #374151; }
+      .title { font: 700 18px "Segoe UI", "Microsoft YaHei UI", sans-serif; fill: #111827; }
+      .input { fill: #f9fafb; stroke: #cbd5e1; stroke-width: 2; rx: 5; }
+      .button { fill: #e0f2fe; stroke: #38bdf8; stroke-width: 2; rx: 7; }
+      .button2 { fill: #f3f4f6; stroke: #cbd5e1; stroke-width: 2; rx: 7; }
+      .select { fill: #ffffff; stroke: #94a3b8; stroke-width: 2; rx: 5; }
+      .log { fill: #111827; stroke: #374151; stroke-width: 2; rx: 6; }
+      .logtext { font: 14px Consolas, "Segoe UI", monospace; fill: #d1fae5; }
+      .note { font: 13px "Segoe UI", "Microsoft YaHei UI", sans-serif; fill: #6b7280; }
+      .callout { fill: #fff7ed; stroke: #fb923c; stroke-width: 2; rx: 8; }
+      .line { stroke: #fb923c; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#fb923c"/>
+    </marker>
+  </defs>
+  <rect x="25" y="25" width="930" height="550" class="window"/>
+  <rect x="25" y="25" width="930" height="42" class="bar"/>
+  <text x="48" y="52" class="title">C Drive Folder Migrator</text>
+
+  <text x="55" y="105" class="label">Source (C drive):</text>
+  <rect x="180" y="84" width="600" height="34" class="input"/>
+  <text x="195" y="106" class="note">C:\Users\Administrator\AppData\Local\Example</text>
+  <rect x="795" y="84" width="105" height="34" class="button2"/>
+  <text x="818" y="106" class="label">Browse...</text>
+
+  <text x="55" y="155" class="label">Target root:</text>
+  <rect x="180" y="134" width="600" height="34" class="input"/>
+  <text x="195" y="156" class="note">E:\AppDataMigrated</text>
+  <rect x="795" y="134" width="105" height="34" class="button2"/>
+  <text x="818" y="156" class="label">Browse...</text>
+
+  <rect x="180" y="190" width="120" height="38" class="button2"/>
+  <text x="213" y="214" class="label">Estimate</text>
+  <rect x="315" y="190" width="120" height="38" class="button2"/>
+  <text x="336" y="214" class="label">Open Target</text>
+  <rect x="465" y="198" width="18" height="18" fill="#fff" stroke="#9ca3af"/>
+  <text x="492" y="214" class="label">Delete temp backup</text>
+  <rect x="665" y="190" width="125" height="38" class="button2"/>
+  <text x="704" y="214" class="label">Restore</text>
+  <rect x="805" y="190" width="135" height="38" class="button"/>
+  <text x="839" y="214" class="title">Migrate</text>
+
+  <text x="55" y="264" class="label">语言：</text>
+  <rect x="135" y="243" width="160" height="32" class="select"/>
+  <text x="148" y="264" class="label">English</text>
+  <text x="55" y="306" class="note">Tip: close related apps first. Do not migrate Windows, Program Files, DriverStore, or the whole AppData folder.</text>
+  <text x="55" y="326" class="note">Restore reads migration-sources.csv or 迁移来源清单.csv from the target root.</text>
+
+  <rect x="55" y="350" width="845" height="165" class="log"/>
+  <text x="78" y="380" class="logtext">[00:10:05] Tool started.</text>
+  <text x="78" y="408" class="logtext">[00:10:16] Size: 2.71 GB</text>
+  <text x="78" y="436" class="logtext">[00:11:42] Copy completed, checking size...</text>
+  <text x="78" y="464" class="logtext">[00:11:55] Migration completed. Original path now points to E:\AppDataMigrated\Example</text>
+
+  <rect x="575" y="250" width="330" height="58" class="callout"/>
+  <text x="595" y="275" class="label">Restore depends on the target root CSV</text>
+  <text x="595" y="296" class="note">Use the migration root, not a specific game folder.</text>
+  <path class="line" d="M704 250 C700 235 705 228 720 222"/>
+</svg>

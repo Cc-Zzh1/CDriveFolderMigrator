@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <style>
+      .bg { fill: #f7f9fc; }
+      .card { fill: #ffffff; stroke: #cfd8e3; stroke-width: 2; rx: 12; }
+      .title { font: 700 21px "Segoe UI", "Microsoft YaHei UI", sans-serif; fill: #1f2937; }
+      .text { font: 15px "Segoe UI", "Microsoft YaHei UI", sans-serif; fill: #374151; }
+      .small { font: 13px "Segoe UI", "Microsoft YaHei UI", sans-serif; fill: #6b7280; }
+      .arrow { stroke: #2563eb; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .good { fill: #ecfdf5; stroke: #34d399; }
+      .warn { fill: #fff7ed; stroke: #fb923c; }
+      .blue { fill: #eff6ff; stroke: #60a5fa; }
+      .purple { fill: #f5f3ff; stroke: #a78bfa; }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#2563eb"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="980" height="430"/>
+  <text class="title" x="32" y="42">Migration And Restore Flow</text>
+  <text class="small" x="32" y="66">After migration, the original C drive path becomes a junction. Restore reads the record CSV from the target root.</text>
+
+  <rect class="card blue" x="35" y="105" width="165" height="105"/>
+  <text class="title" x="58" y="142">1. Pick folders</text>
+  <text class="text" x="58" y="172">Source is on C:</text>
+  <text class="text" x="58" y="194">Target root is on E:</text>
+  <path class="arrow" d="M210 158 H270"/>
+
+  <rect class="card blue" x="285" y="105" width="165" height="105"/>
+  <text class="title" x="311" y="142">2. Copy/check</text>
+  <text class="text" x="310" y="172">Copy with robocopy</text>
+  <text class="text" x="310" y="194">Continue after check</text>
+  <path class="arrow" d="M460 158 H520"/>
+
+  <rect class="card good" x="535" y="105" width="165" height="105"/>
+  <text class="title" x="568" y="142">3. Link path</text>
+  <text class="text" x="558" y="172">Original C path</text>
+  <text class="text" x="558" y="194">points to target</text>
+  <path class="arrow" d="M710 158 H770"/>
+
+  <rect class="card purple" x="785" y="105" width="160" height="105"/>
+  <text class="title" x="807" y="142">4. Write records</text>
+  <text class="text" x="805" y="172">Target root gets</text>
+  <text class="text" x="805" y="194">CSV and notes</text>
+
+  <rect class="card warn" x="35" y="260" width="300" height="92"/>
+  <text class="title" x="58" y="296">On failure</text>
+  <text class="text" x="58" y="324">Stop migration and keep the original folder unchanged.</text>
+  <path class="arrow" d="M370 212 C330 250 300 270 335 285"/>
+
+  <rect class="card good" x="380" y="260" width="565" height="92"/>
+  <text class="title" x="405" y="296">During restore</text>
+  <text class="text" x="405" y="324">Restore reads migration-sources.csv or 迁移来源清单.csv from the current target root.</text>
+  <text class="small" x="405" y="346">Use the migration root, for example E:\AppDataMigrated, not a specific game folder.</text>
+  <path class="arrow" d="M865 215 C865 245 830 260 785 272"/>
+</svg>
