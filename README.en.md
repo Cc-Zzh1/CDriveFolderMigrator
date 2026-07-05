@@ -8,6 +8,16 @@ This is a portable Windows utility for moving known large user-data folders from
 
 Applications still access the original C drive path, but the real data is stored on the target drive.
 
+## Supported Systems
+
+- Recommended: Windows 10 and Windows 11.
+- Also suitable for: Windows Server 2016/2019/2022 with Desktop Experience.
+- Requires: Windows PowerShell 5.1, .NET Framework WinForms, `robocopy`, and `mklink`. These are usually included with modern Windows.
+- Not supported: macOS and Linux.
+- Not recommended: unsupported legacy systems such as Windows 7/8/8.1. They may work in some environments, but compatibility is not guaranteed.
+
+For game saves, browser data, and app settings under the current user profile, administrator rights are usually not required. Do not use this tool for system folders, driver stores, or folders that should be maintained by Windows.
+
 ![UI guide](docs/ui-guide.en.svg)
 
 ## Good Use Cases
@@ -124,6 +134,14 @@ To make restore records discoverable:
 2. If you manually move the target root, move the CSV record file with it.
 3. If you manually move only one migrated subfolder, update that row's `MigratedPath` in the CSV. Otherwise the tool may not find the real folder, or it may stop because the safety check fails.
 4. Do not put the CSV inside a specific game folder unless that game folder itself is the target root shown in the tool.
+
+After a successful restore, the tool also checks for temporary backups it created beside the original path, for example:
+
+```text
+Example_backup_migrated_20260706_010000
+```
+
+If such a backup is found, the tool deletes it so the C drive does not keep an old duplicate. It only deletes folders that match the `_backup_migrated_yyyyMMdd_HHmmss` naming pattern and are next to the original path. If the backup is locked and cannot be deleted, the log asks you to check it manually.
 
 The tool checks that:
 

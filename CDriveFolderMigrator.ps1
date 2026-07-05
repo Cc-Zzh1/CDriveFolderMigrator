@@ -206,11 +206,71 @@ function Append-MigrationReport {
     $logLines | Add-Content -LiteralPath $logPath -Encoding UTF8
 }
 
+function Get-RestoreBackupCandidates {
+    param(
+        [string]$Source,
+        [string]$Note
+    )
+
+    $sourceFull = [System.IO.Path]::GetFullPath($Source).TrimEnd('\')
+    $parent = Split-Path -Parent $sourceFull
+    $leaf = Split-Path -Leaf $sourceFull
+    $candidatePaths = New-Object System.Collections.Generic.List[string]
+
+    if ($Note -match 'backup kept:\s*(.+)$') {
+        $candidatePaths.Add($matches[1].Trim())
+    }
+
+    if (Test-Path -LiteralPath $parent) {
+        $pattern = "$leaf`_backup_migrated_*"
+        Get-ChildItem -LiteralPath $parent -Directory -Force -Filter $pattern -ErrorAction SilentlyContinue | ForEach-Object {
+            $candidatePaths.Add($_.FullName)
+        }
+    }
+
+    $safeNameRegex = "^$([regex]::Escape($leaf))_backup_migrated_\d{8}_\d{6}$"
+    $safePaths = New-Object System.Collections.Generic.List[string]
+    foreach ($path in ($candidatePaths | Select-Object -Unique)) {
+        if ([string]::IsNullOrWhiteSpace($path) -or -not (Test-Path -LiteralPath $path)) { continue }
+        $full = [System.IO.Path]::GetFullPath($path).TrimEnd('\')
+        $item = Get-Item -LiteralPath $full -Force
+        if (-not $item.PSIsContainer) { continue }
+        if ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) { continue }
+        if (-not ([System.IO.Path]::GetFullPath((Split-Path -Parent $full)).TrimEnd('\').Equals($parent, [System.StringComparison]::OrdinalIgnoreCase))) { continue }
+        if ($item.Name -notmatch $safeNameRegex) { continue }
+        $safePaths.Add($full)
+    }
+    return $safePaths
+}
+
+function Remove-RestoreBackups {
+    param(
+        [string]$Source,
+        [string]$Note
+    )
+
+    $backups = @(Get-RestoreBackupCandidates -Source $Source -Note $Note)
+    $removed = 0
+    foreach ($backup in $backups) {
+        Add-Log "删除还原后残留的临时备份：$backup"
+        try {
+            Remove-Item -LiteralPath $backup -Recurse -Force -ErrorAction Stop
+            $removed++
+        } catch {
+            Add-Log "临时备份删除失败，请手动检查：$backup"
+        }
+    }
+    if ($removed -gt 0) {
+        Add-Log "已删除临时备份：$removed 个"
+    }
+}
+
 function Restore-Migration {
     param(
         [string]$Source,
         [string]$Target,
-        [string]$TargetRoot
+        [string]$TargetRoot,
+        [string]$Note
     )
 
     if ([string]::IsNullOrWhiteSpace($Source) -or [string]::IsNullOrWhiteSpace($Target)) {
@@ -270,6 +330,7 @@ function Restore-Migration {
         throw "还原后原路径状态异常，请手动检查。"
     }
 
+    Remove-RestoreBackups -Source $sourceFull -Note $Note
     Append-MigrationReport -TargetRoot $TargetRoot -Source $sourceFull -Target $targetFull -Size (Format-Bytes $size) -Note "restored to original path"
     Add-Log "还原完成：$sourceFull"
 }
@@ -345,7 +406,7 @@ function Show-RestoreDialog {
     )
     if ($confirm -ne [System.Windows.Forms.DialogResult]::Yes) { return }
 
-    Restore-Migration -Source $record.OriginalPath -Target $record.MigratedPath -TargetRoot $TargetRoot
+    Restore-Migration -Source $record.OriginalPath -Target $record.MigratedPath -TargetRoot $TargetRoot -Note $record.Note
 }
 
 function Write-Readme {
