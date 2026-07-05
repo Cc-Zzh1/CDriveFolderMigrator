@@ -25,6 +25,11 @@
 - 在目标根目录写入“迁移来源清单.csv”和“迁移说明.txt”。
 - 如果界面切换为 English，新生成的记录文件会使用 migration-sources.csv、migration-notes.txt、migration-log.txt。
 
+实际案例：
+- Chrome User Data 这类浏览器用户数据可能占用数 GB 空间。
+- 迁移后 C 盘路径仍然会存在，这是目录联接入口；真实数据在目标盘。
+- README.md 里有 C 盘入口和 E 盘真实目录的截图对照。
+
 还原说明：
 - “还原迁移”只读取当前“目标根目录”下的记录文件，不会扫描整个 E 盘。
 - 中文界面优先读取“迁移来源清单.csv”。

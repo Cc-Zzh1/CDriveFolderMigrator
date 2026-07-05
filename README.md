@@ -28,6 +28,21 @@
 - 明确知道用途的 `AppData` 子目录
 - `Saved Games`、`Documents\My Games` 这类用户数据目录
 
+## 实际案例
+
+下面是一次 Chrome `User Data` 目录迁移案例。这个目录包含浏览器配置、缓存、扩展、登录状态和个人资料，文件数量多、写入频繁，很容易占用 C 盘空间。
+
+案例中，Chrome 用户数据约占用 7.52 GB。迁移后，软件仍然访问原来的 C 盘路径，但真实数据已经放在 E 盘。也就是说，看到 C 盘路径仍然存在并不代表迁移失败；它只是保留给程序使用的目录联接入口。
+
+| C 盘原入口 | E 盘真实目录 |
+| --- | --- |
+| ![Chrome User Data C drive junction](docs/case-chrome-c-drive.png) | ![Chrome User Data E drive real folder](docs/case-chrome-e-drive.png) |
+
+这个案例适合说明两件事：
+
+1. 大型浏览器用户数据目录可以通过迁移释放 C 盘空间。
+2. 迁移成功后，验证时要看目录是否为联接，以及 E 盘目标目录是否有对应数据；不要只看属性窗口里的 C 盘路径。
+
 ## 不要迁移什么
 
 - `C:\Windows`

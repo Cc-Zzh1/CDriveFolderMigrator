@@ -28,6 +28,21 @@ For game saves, browser data, and app settings under the current user profile, a
 - Known `AppData` subfolders
 - `Saved Games` or `Documents\My Games` style user data folders
 
+## Real-World Example
+
+The screenshots below show a Chrome `User Data` migration. This folder stores browser settings, cache, extensions, login state, and user profiles. It often contains many files and can grow large on the C drive.
+
+In this example, Chrome user data uses about 7.52 GB of disk space. After migration, Chrome can still use the original C drive path, while the real data lives on the E drive. In other words, seeing the C drive path still exist does not mean the migration failed; it is the junction entry kept for the application.
+
+| C drive entry | Real folder on E drive |
+| --- | --- |
+| ![Chrome User Data C drive junction](docs/case-chrome-c-drive.png) | ![Chrome User Data E drive real folder](docs/case-chrome-e-drive.png) |
+
+This example highlights two points:
+
+1. Large browser profile folders can be migrated to free C drive space.
+2. After migration, verify the junction and the target folder instead of judging only by the path shown in the Properties window.
+
 ## Do Not Migrate
 
 - `C:\Windows`
