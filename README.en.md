@@ -1,5 +1,7 @@
 ﻿# C Drive Folder Migrator
 
+Language: English | [中文](README.md)
+
 Free up your C drive by moving game saves, browser profiles, and large app configuration folders to another drive while keeping the original paths working.
 
 This is a portable Windows utility for moving known large user-data folders from the C drive to another drive while keeping the original path working through a directory junction.
